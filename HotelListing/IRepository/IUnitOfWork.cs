@@ -10,6 +10,7 @@ namespace HotelListing.IRepository
     {
         IGenericRepository<Country> CoutiresRepo { get; }
         IGenericRepository<Hotel> HotelsRepo { get; }
+        IGenericRepository<Room> RoomsRepo { get; }
         Task Save();
     }
 }

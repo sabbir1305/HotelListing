@@ -12,6 +12,7 @@ namespace HotelListing.Repository
         private readonly DatabaseContext _context;
         private IGenericRepository<Country> _countries;
         private IGenericRepository<Hotel> _hotels;
+        private IGenericRepository<Room> _rooms;
 
         public UnitOfWork(DatabaseContext context)
         {
@@ -20,7 +21,8 @@ namespace HotelListing.Repository
          
         public IGenericRepository<Country> CoutiresRepo =>_countries?? new GenericRepository<Country>(_context);
 
-        public IGenericRepository<Hotel> HotelsRepo => _hotels??new GenericRepository<Hotel>(_context);
+        public IGenericRepository<Hotel> HotelsRepo => _hotels?? new GenericRepository<Hotel>(_context);
+        public IGenericRepository<Room> RoomsRepo => _rooms?? new GenericRepository<Room>(_context);
 
         public void Dispose()
         {

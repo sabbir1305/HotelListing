@@ -17,5 +17,7 @@ namespace HotelListing.Data
 
         [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
+
+        public virtual IList<Room> Rooms { get; set; }
     }
 }

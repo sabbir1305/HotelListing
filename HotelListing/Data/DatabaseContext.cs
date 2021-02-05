@@ -15,6 +15,7 @@ namespace HotelListing.Data
 
         public DbSet<Country> Countries { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Room> Rooms { get; set; }
   
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -65,6 +66,31 @@ namespace HotelListing.Data
                           Rating = 5
                       }
                 );
+
+            builder.Entity<Room>().HasData(
+           new Room
+           {
+               Id = 1,
+               GuestsAllowed=5,
+               HotelId=1,
+               Price=25000,
+               RoomType="Delux, for five people"
+
+             
+           },
+             new Room
+             {
+                 Id = 2,
+                 GuestsAllowed = 2,
+                 HotelId = 2,
+                 Price = 25000,
+                 RoomType = "VIP Lounge"
+
+
+             }
+
+
+           );
         }
     
     }
