@@ -1,11 +1,13 @@
 using AutoMapper;
 using HotelListing.Configurations;
 using HotelListing.Data;
+using HotelListing.Extentions;
 using HotelListing.IRepository;
 using HotelListing.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +40,9 @@ namespace HotelListing
             {
                 opt.UseSqlServer(Configuration.GetConnectionString("sqlConnection"));
             });
+
+            services.AddAuthentication();
+            services.ConfigureIdentity();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
          
