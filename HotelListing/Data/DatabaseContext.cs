@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using HotelListing.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace HotelListing.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new RoleConfiguration());
+
 
             builder.Entity<Country>().HasData(
                 new Country
@@ -43,33 +46,8 @@ namespace HotelListing.Data
                   }
             );
 
-            builder.Entity<Hotel>().HasData(
-                new Hotel
-                {
-                    Id=1,
-                    Address="Dhaka , Metro",
-                    CountryId=1,
-                    Name="Panpacific Sonargaon",
-                    Rating=3.5
-                },
-                   new Hotel
-                   {
-                       Id = 2,
-                       Address = "Dhaka , Metro",
-                       CountryId = 1,
-                       Name = "Westin",
-                       Rating = 4.5
-                   },
-                      new Hotel
-                      {
-                          Id = 3,
-                          Address = "Dhaka , Metro",
-                          CountryId = 2,
-                          Name = "Grand Paladin",
-                          Rating = 5
-                      }
-                );
-
+            builder.ApplyConfiguration(new HotelConfig());
+      
             builder.Entity<Room>().HasData(
            new Room
            {
